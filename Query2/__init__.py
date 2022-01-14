@@ -72,12 +72,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         
     
     if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        nameMessage = f"Hello, {name}!\n"
     else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+        nameMessage = "Le parametre 'name' n'a pas ete fourni lors de l'appel.\n"
+    
     if errorMessage != "":
         return func.HttpResponse(dataString + nameMessage + errorMessage, status_code=500)
 
