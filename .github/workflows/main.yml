@@ -15,7 +15,7 @@ on:
 # For help, go to https://github.com/Azure/Actions
 #
 # 1. Set up the following secrets in your repository:
-AZURE_FUNCTIONAPP_PUBLISH_PROFILE : '<publishProfile profileName="abattut-api-fa - Web Deploy" publishMethod="MSDeploy" publishUrl="abattut-api-fa.scm.azurewebsites.net:443" msdeploySite="abattut-api-fa" userName="$abattut-api-fa" userPWD="X3GW7usqD8fcfcgdPtbnbTw5nJotWTNZnfXNfrQdiJHiEmmRaSxE3u9Sms10" destinationAppUrl="http://abattut-api-fa.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile><publishProfile profileName="abattut-api-fa - FTP" publishMethod="FTP" publishUrl="ftp://waws-prod-par-011.ftp.azurewebsites.windows.net/site/wwwroot" ftpPassiveMode="True" userName="abattut-api-fa\$abattut-api-fa" userPWD="X3GW7usqD8fcfcgdPtbnbTw5nJotWTNZnfXNfrQdiJHiEmmRaSxE3u9Sms10" destinationAppUrl="http://abattut-api-fa.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile><publishProfile profileName="abattut-api-fa - Zip Deploy" publishMethod="ZipDeploy" publishUrl="abattut-api-fa.scm.azurewebsites.net:443" userName="$abattut-api-fa" userPWD="X3GW7usqD8fcfcgdPtbnbTw5nJotWTNZnfXNfrQdiJHiEmmRaSxE3u9Sms10" destinationAppUrl="http://abattut-api-fa.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile>'
+# AZURE_FUNCTIONAPP_PUBLISH_PROFILE 
 #
 # 2. Change these variables for your configuration:
 env:
