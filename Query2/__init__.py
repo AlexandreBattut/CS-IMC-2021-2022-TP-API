@@ -46,11 +46,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 #        producers = graph.run("MATCH (n:Name)-[:PRODUCED]->(t:Title) WHERE t.primaryTitle CONTAINS 'Spider-Man' RETURN DISTINCT n.nconst, n.primaryName LIMIT 3")
         if birthyear:
             nbactors=graph.run(f"MATCH (n:Person) WHERE n.birthYear = {birthyear} RETURN count(n)")
-            dataString+=f"There were {nbactors} actors born in {birthyear} \n"
+            dataString+=f"There were {nbactors['count(n)']} actors born in {birthyear} \n"
         else:
             nbactors=graph.run("MATCH (n:Person) WHERE n.birthYear = 1960 RETURN count(n)")
             dataString+=f"You did not gave a birthyear argument, so by default we show the number of actors born in 1960\n"
-            dataString+=f"There were {nbactors} actors born in 1960"
+            dataString+=f"There were {nbactors['count(n)']} actors born in 1960"
 #        for producer in producers:
 #            dataString += f"CYPHER: nconst={producer['n.nconst']}, primaryName={producer['n.primaryName']}\n"
 
