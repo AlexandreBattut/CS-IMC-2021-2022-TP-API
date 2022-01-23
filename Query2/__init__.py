@@ -17,13 +17,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             pass
         else:
             name = req_body.get('name')
-    if not birthyear:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('birthyear')
 
     server = os.environ["TPBDD_SERVER"]
     database = os.environ["TPBDD_DB"]
@@ -39,35 +32,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse("Au moins une des variables d'environnement n'a pas été initialisée.", status_code=500)
         
     errorMessage = ""
-    dataString = "Number of actors per birth year !\n"
+    dataString = "The details of the actor Jude Law: \n"
     try:
         logging.info("Test de connexion avec py2neo...")
         graph = Graph(neo4j_server, auth=(neo4j_user, neo4j_password))
-#        producers = graph.run("MATCH (n:Name)-[:PRODUCED]->(t:Title) WHERE t.primaryTitle CONTAINS 'Spider-Man' RETURN DISTINCT n.nconst, n.primaryName LIMIT 3")
-        if birthyear:
-            nbactors=graph.run(f"MATCH (n:Person) WHERE n.birthYear = {birthyear} RETURN count(n) as nbact")
-            dataString+=f"There were {nbactors['nbact']} actors born in {birthyear} \n"
-        else:
-            nbactors=graph.run("MATCH (n:Person) WHERE n.birthYear = 1960 RETURN count(n)")
-            dataString+=f"You did not gave a birthyear argument, so by default we show the number of actors born in 1960\n"
-            dataString+=f"There were {nbactors['nbact']} actors born in 1960"
-#        for producer in producers:
-#            dataString += f"CYPHER: nconst={producer['n.nconst']}, primaryName={producer['n.primaryName']}\n"
 
-
-        # try:
-        #     logging.info("Test de connexion avec pyodbc...")
-        #     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
-        #         cursor = conn.cursor()
-        #         cursor.execute("SELECT TOP(3) tconst, primaryTitle, averageRating FROM [dbo].[tTitles] ORDER BY averageRating DESC")
-
-        #         rows = cursor.fetchall()
-        #         for row in rows:
-        #             dataString += f"SQL: tconst={row[0]}, primaryTitle={row[1]}, averageRating={row[2]}\n"
-
-
-        # except:
-        #     errorMessage = "Erreur de connexion a la base SQL"
+        result=graph.run("MATCH (n:Person) WHERE n.names = ‘Jude Law’ RETURN n.birthYear")
+        dataString+=f"The actor Jude Law was born in {result['n.birthyear']}\n"
     except:
         errorMessage = "Erreur de connexion a la base Neo4j"
         
