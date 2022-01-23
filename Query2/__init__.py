@@ -54,6 +54,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 #        for producer in producers:
 #            dataString += f"CYPHER: nconst={producer['n.nconst']}, primaryName={producer['n.primaryName']}\n"
 
+
         # try:
         #     logging.info("Test de connexion avec pyodbc...")
         #     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
